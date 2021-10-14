@@ -11,8 +11,13 @@
     #btnA{
       background-color:yellow;
       color:green;
-
     }
+
+    #time{
+      box-shadow: 5px 5px 5px;
+      width:50%;
+    }
+
     #remain{
       font-weight:bold;
     }
