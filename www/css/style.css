@@ -6,6 +6,15 @@
       color: blue;
       font-family: Times;
       border-radius:20px; 
+      
+    }
+    #btnA{
+      background-color:yellow;
+      color:green;
+
+    }
+    #remain{
+      font-weight:bold;
     }
     
     #minuteStr {
