@@ -18,6 +18,9 @@
       box-shadow: 5px 5px 5px;
       width:50%;
     }
+    #time::after{
+      content:"秒";
+    }
 
     #remain{
       font-weight:bold;
