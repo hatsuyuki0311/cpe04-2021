@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,6 +15,7 @@
 
   </style>
   <script>
+    /*https://techacademy.jp/magazine/19623*/
     // timer処理
     $(function(){
         setInterval(function(){
@@ -36,6 +38,9 @@
         });
 
         $('#btnC').click(function(e) {
+            btnCClick(e);
+        });
+        $('#btnD').click(function(e) {
             btnCClick(e);
         });
         init();
@@ -137,9 +142,9 @@
 
     // 残り秒数アナログ表示
     function analog(rest){
-        var h = parseInt(rest/3600);
-        var m = parseInt((rest-h*3600)/60);
-        var s = parseInt(rest-h*3600-m*60);
+        var h = parseInt(3600/rest);
+        var m = parseInt(s*60/rest);
+        var s = parseInt(60-rest);
         clock(h,m,s,true);
 
     }
@@ -160,6 +165,7 @@
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', false);
         $('#btnC').prop('disabled', false);
+        $('#btnD').prop('disabled', false);
         
     }
 
@@ -170,34 +176,53 @@
         var img=new Image();
         img.src="ksuisbg.gif";
         img.onload=function(){
-          ctx.drawImage(img,0,0,300,300);
+          //ctx.drawImage(img,0,0,300,300);
 
           var audio=new Audio();
           audio.src="pin.wav";
-          audio.play();
+          audio.play();//音再生
         };
-        
+    }
+    //タイマーセーブの処理
+    function save(){
+
     }
     
     // ButtonAがクリックされた時の処理
     function btnAClick(e){
         active=true;
         startTime=new Date();
-        
+        $("#btnA").css("background-color","lightgray");
+        $("#mycanvas").css("background-color","lightblue");
     }
 
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
         active=false;
+        //save();
+        $("#btnB").css("background-color","lightgray");
+        $("#btnD").html("Remove");
+        
     }
 
     // ButtonCがクリックされた時の処理
     function btnCClick(e){
-        alarm();
+        //alarm();
         active=false;
         period=60*parseInt($("#minute").val())+parseInt($("#second").val());
         $("#time").html("経過時間:0");
         $("#remain").html("残り時間:"+period);
+        $("#btnC").css("background-color","orange");
+        $("#btnC").html("Reset");
+    }
+
+    // ButtonDがクリックされた時の処理
+    function btnDClick(e){
+      //if(btnBClick=false){
+        //function load();
+        active=true;
+      //}
+        
     }
     
  
@@ -211,16 +236,16 @@
         analog(rest);
         if(rest<=0){
           active=false;
-          alarm();
+          //alarm();
 
-          if(ButtonA=ture){
+          /*if(ButtonA=ture){
             $("ボタンのid").prop("disabled",true);
-          };
+          };*/
         }
-
-      }  
-        
-        
+        if(rest<=5){
+          $("#btnC").css("background-color","orange");
+        }
+      }      
     } 
 
   </script>
@@ -235,7 +260,8 @@
     <div id="time">Time</div>
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>  
-    <button id="btnC">Set</button>  
+    <button id="btnC">Set</button> 
+    <button id="btnD"> </button>   
     <input type="number" id="minute" value=0 >
     <input type="number" id="second" value=15 >
 </body>
