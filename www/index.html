@@ -11,12 +11,10 @@
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .parent {
-      background-color: lightgreen;
-    }
-    .parent :not(:active) {
+    
+   /* .parent :not(:active) {
       background-color: pink;
-    }
+    }*/
 
   </style>
   <script>
@@ -199,12 +197,14 @@
         startTime=new Date();
         $("#btnA").css("background-color","lightgray");
         $("#mycanvas").css("background-color","lightblue");
+        
     }
 
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
         active=false;
         //save();
+        startTime=period;
         $("#btnB").css("background-color","lightgray");
         $("#btnD").html("Remove");
         
@@ -226,6 +226,7 @@
       //if(btnBClick=false){
         //function load();
         active=true;
+        startTime=period;
       //}
         
     }
@@ -235,6 +236,7 @@
     function timer(){
       if(active){
         var time=parseInt((new Date()-startTime)/1000);
+        var time1=parseInt((startTime-period)/1000);
         var rest=period-time;
         $("#time").html("経過時間:"+time);
         $("#remain").html("残り時間:"+rest);
@@ -247,19 +249,23 @@
             $("ボタンのid").prop("disabled",true);
           };*/
         }
-        if(rest<=10){
-          $("#.parent").html("background-color","red");
+        if(rest<=10&& rest>5){
+          $("body").css("background-color","pink");
+        }else if(rest<=5){
+          $("body").css("background-color","lightgreen");
         }
       }      
     } 
     //<body bgcolor="blue">
+    //<div class="parent">
+    
     
 
   </script>
 </head>
 <body>
       
-      <div class="parent">
+      
       <canvas id="mycanvas" width="200" height="200">Test</canvas>
 
     <div id="minuteStr">〇</div>//  
