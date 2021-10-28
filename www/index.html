@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,6 +11,12 @@
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    .parent {
+      background-color: lightgreen;
+    }
+    .parent :not(:active) {
+      background-color: pink;
+    }
 
   </style>
   <script>
@@ -242,16 +247,20 @@
             $("ボタンのid").prop("disabled",true);
           };*/
         }
-        if(rest<=5){
-          $("#btnC").css("background-color","orange");
+        if(rest<=10){
+          $("#.parent").html("background-color","red");
         }
       }      
     } 
+    //<body bgcolor="blue">
+    
 
   </script>
 </head>
 <body>
-    <canvas id="mycanvas" width="200" height="200">Test</canvas>
+      
+      <div class="parent">
+      <canvas id="mycanvas" width="200" height="200">Test</canvas>
 
     <div id="minuteStr">〇</div>//  
     <div id="secondStr">〇</div>
