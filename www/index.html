@@ -44,7 +44,7 @@
             btnCClick(e);
         });
         $('#btnD').click(function(e) {
-            btnCClick(e);
+            btnDClick(e);
         });
         init();
     });
@@ -159,8 +159,12 @@
 
     // 変数宣言
     var active =false;
+    var aaa=0;
+    var stopTime=0;
     var startTime=0;
+    var resetTime=0;
     var period=0;
+    var time=0;
 
     
     // ボタンの初期設定
@@ -196,18 +200,18 @@
         active=true;
         startTime=new Date();
         $("#btnA").css("background-color","lightgray");
-        $("#mycanvas").css("background-color","lightblue");
-        
+        //$("#mycanvas").css("background-color","lightblue");
+        $("#remain").css("background-color","yellow");   
     }
-
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
         active=false;
         //save();
-        startTime=period;
+        //aaa=startTime;
+        stopTime=new Date();
+        time=parseInt((new Date()-startTime-stopTime)/1000);
         $("#btnB").css("background-color","lightgray");
-        $("#btnD").html("Remove");
-        
+        $("#btnD").html("Restart");
     }
 
     // ButtonCがクリックされた時の処理
@@ -223,11 +227,12 @@
 
     // ButtonDがクリックされた時の処理
     function btnDClick(e){
-      //if(btnBClick=false){
-        //function load();
         active=true;
-        startTime=period;
-      //}
+        resetTime=new Date();
+
+        console.log("ihihihiu");
+        $("#btnA").css("background-color","lightgray");
+        
         
     }
     
@@ -235,8 +240,7 @@
     // 繰り返し実行する処理
     function timer(){
       if(active){
-        var time=parseInt((new Date()-startTime)/1000);
-        var time1=parseInt((startTime-period)/1000);
+        time=parseInt((new Date()-startTime-(resetTime-stopTime))/1000);
         var rest=period-time;
         $("#time").html("経過時間:"+time);
         $("#remain").html("残り時間:"+rest);
